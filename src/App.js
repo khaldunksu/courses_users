@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Switch, Route, NavLink, HashRouter } from 'react-router-dom';
+import PeoplePage from './components/Users/PeoplePage'
+import CoursesPage   from './components/Courses/CoursesPage'
+//import NewCourses   from './NewCourses'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <h1>Table</h1>
+    <HashRouter>
+      <p className="ui secondary  menu">
+        <NavLink className="item" to="/" exact>Home</NavLink>
+        <NavLink className="item" to="/courses" exact>Courses</NavLink>
+        <NavLink to="/users" exact className="item">Users</NavLink>
+      </p>
+      <Switch>
+      <Route
+          path="/"
+          exact
+          render={() => (
+            <div>
+              <h1 className="home">Home</h1>
+              <div className="image" />
+            </div>
+          )}
+        />
+        <Route path="/courses/" component={CoursesPage} />
+        <Route path="/users/" component={PeoplePage} />
+        
+      </Switch>
+    </HashRouter>
+  </div>
+);
 
 export default App;
+ /*<NavLink className="item" to="/courses/new_cours" exact>Add</NavLink>
+ <Route path="/courses/new_cours" component={NewCourses} />*/
